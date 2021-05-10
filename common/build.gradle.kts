@@ -48,10 +48,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Libs.Koin.core)
-                api(Libs.Koin.test)
+                api(libs.koin.core)
+                api(libs.koin.test)
 
-                implementation(Libs.SqlDelight.coroutines)
+                implementation(libs.sqldelight.coroutines)
             }
         }
         val commonTest by getting
@@ -60,25 +60,25 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.2.0")
                 api("androidx.core:core-ktx:1.3.2")
 
-                implementation(Libs.SqlDelight.androidDriver)
+                implementation(libs.sqldelight.android.driver)
 
-                implementation(Libs.AndroidX.DataStore.preferences)
+                implementation(libs.androidx.datastore.preferences)
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation(Libs.junit)
+                implementation(libs.junit)
             }
         }
         val desktopMain by getting {
             dependencies {
-                implementation(Libs.SqlDelight.jvmDriver)
+                implementation(libs.sqldelight.jvm.driver)
             }
         }
         val desktopTest by getting
         val iosMain by getting {
             dependencies {
-                implementation(Libs.SqlDelight.nativeDriver)
+                implementation(libs.sqldelight.native.driver)
             }
         }
         val iosTest by getting

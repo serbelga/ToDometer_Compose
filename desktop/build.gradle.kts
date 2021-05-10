@@ -3,7 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version Versions.composeDesktop
+    id("org.jetbrains.compose") version "0.4.0-build188"
 }
 
 group = "com.sergiobelda.todometer"

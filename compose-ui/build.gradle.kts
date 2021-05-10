@@ -2,7 +2,7 @@ import org.jetbrains.compose.compose
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version Versions.composeDesktop
+    id("org.jetbrains.compose") version "0.4.0-build188"
     id("com.android.library")
 }
 
@@ -45,13 +45,13 @@ kotlin {
         val commonTest by getting
         val androidMain by getting {
             dependencies {
-                api(Libs.AndroidX.appCompat)
-                api(Libs.AndroidX.coreKtx)
+                api(libs.androidx.appcompat)
+                api(libs.androidx.corektx)
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation(Libs.junit)
+                implementation(libs.junit)
             }
         }
         val desktopMain by getting

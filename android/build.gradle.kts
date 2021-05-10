@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.compose") version Versions.composeDesktop
+    id("org.jetbrains.compose") version "0.4.0-build188"
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
@@ -16,20 +16,19 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":compose-ui"))
 
-    implementation(Libs.AndroidX.Activity.activityCompose)
-    implementation(Libs.AndroidX.Compose.materialIconsExtended)
-    implementation(Libs.AndroidX.Compose.runtimeLiveData)
-    implementation(Libs.AndroidX.Compose.uiTooling)
-    implementation(Libs.AndroidX.Navigation.compose)
-    implementation(Libs.AndroidX.Lifecycle.runtime)
-    implementation(Libs.AndroidX.Lifecycle.viewModel)
-    implementation(Libs.AndroidX.Lifecycle.liveData)
-    implementation(Libs.Google.Material.materialComponents)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.compose.runtime.livedata)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.material.components)
 
-    implementation(Libs.timber)
+    implementation(libs.timber)
 
-    implementation(Libs.Koin.core)
-    implementation(Libs.Koin.android)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 }
 
 android {
