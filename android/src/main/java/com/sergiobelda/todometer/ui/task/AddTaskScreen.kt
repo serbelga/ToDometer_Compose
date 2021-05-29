@@ -18,12 +18,14 @@ package com.sergiobelda.todometer.ui.task
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.icons.Icons
@@ -42,6 +44,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.sergiobelda.todometer.android.R
 import com.sergiobelda.todometer.compose.ui.theme.TodometerColors
+import com.sergiobelda.todometer.compose.ui.theme.TodometerTypography
 import com.sergiobelda.todometer.ui.components.TextField
 import com.sergiobelda.todometer.viewmodel.MainViewModel
 
@@ -64,54 +67,60 @@ fun AddTaskScreen(
                         Icon(Icons.Rounded.ArrowBack, contentDescription = "Back")
                     }
                 },
-                title = { Text(stringResource(id = R.string.add_task)) }
+                title = {},
+                actions = {
+                    TextButton(onClick = {
+                        if (taskTitle.isBlank()) {
+                            taskTitleInputError = true
+                        } else {
+                            mainViewModel.insertTask(
+                                title = taskTitle,
+                                description = taskDescription,
+                                tagId = 1 // TODO: Update
+                            )
+                            navigateUp()
+                        }
+                    }) {
+                        Icon(Icons.Rounded.Check, contentDescription = "Add task")
+                        Text(stringResource(R.string.save))
+                    }
+                }
             )
         },
         content = {
-            Column {
-                TextField(
-                    value = taskTitle,
-                    onValueChange = {
-                        taskTitle = it
-                        taskTitleInputError = false
-                    },
-                    label = { Text(stringResource(id = R.string.title)) },
-                    isError = taskTitleInputError,
-                    errorMessage = stringResource(id = R.string.field_not_empty),
-                    keyboardOptions = KeyboardOptions(
-                        capitalization = KeyboardCapitalization.Sentences,
-                        imeAction = ImeAction.Next
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-                TextField(
-                    value = taskDescription,
-                    onValueChange = { taskDescription = it },
-                    label = { Text(stringResource(id = R.string.description)) },
-                    keyboardOptions = KeyboardOptions(
-                        capitalization = KeyboardCapitalization.Sentences,
-                        imeAction = ImeAction.Done
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    if (taskTitle.isBlank()) {
-                        taskTitleInputError = true
-                    } else {
-                        mainViewModel.insertTask(
-                            title = taskTitle,
-                            description = taskDescription,
-                            tagId = 1 // TODO: Update
-                        )
-                        navigateUp()
-                    }
-                },
-            ) {
-                Icon(Icons.Rounded.Check, contentDescription = "Add task")
+            Surface {
+                Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp)) {
+                    TextField(
+                        value = taskTitle,
+                        onValueChange = {
+                            taskTitle = it
+                            taskTitleInputError = false
+                        },
+                        label = { Text(stringResource(id = R.string.title)) },
+                        isError = taskTitleInputError,
+                        errorMessage = stringResource(id = R.string.field_not_empty),
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Sentences,
+                            imeAction = ImeAction.Next
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    ) 
+                    Text(
+                        "Choose a Tag",
+                        style = TodometerTypography.caption,
+                        color = TodometerColors.primary
+                    )
+                    TextField(
+                        value = taskDescription,
+                        onValueChange = { taskDescription = it },
+                        label = { Text(stringResource(id = R.string.description)) },
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Sentences,
+                            imeAction = ImeAction.Done
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
     )

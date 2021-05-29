@@ -51,7 +51,7 @@ val limeDark = Color(0xFFdce775)
 val yellowLight = Color(0xFFffeb3b)
 val yellowDark = Color(0xFFfff59d)
 
-val amberLight = Color(0xFFffc107)
+val amberLight = Color(0xFFFFC107)
 val amberDark = Color(0xFFffe082)
 
 val orangeLight = Color(0xFFF86734)
